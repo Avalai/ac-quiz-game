@@ -1,0 +1,27 @@
+{
+  "name": "ac-quiz-game",
+  "version": "1.0.0",
+  "description": "A flashcard quiz game to test your knowledge about the villagers featured in Animal Crossing games.",
+  "main": "app.js",
+  "dependencies": {
+    "@material-ui/core": "^4.9.0",
+    "@material-ui/icons": "^4.5.1",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^9.1.7",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "typeface-roboto": "0.0.75"
+  },
+  "devDependencies": {
+    "lodash": "^4.17.15",
+    "wikijs": "^6.0.1"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "author": "Marina Milette <avalai@live.com>",
+  "license": "ISC",
+  "keywords": []
+}
