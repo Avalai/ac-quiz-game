@@ -23,9 +23,10 @@ const nookipedia = wiki({
 })
 const pageFilter = ['Category:', 'User:']
 
-const speciesMap = { 
+const speciesMap = {  
+    Bull: 'Bovine',
     Cow: 'Bovine', 
-    Bull: 'Bovine', 
+    Deer: 'Deer',
     'Frog (species)': 'Frogs', 
     Mouse: 'Mice', 
     'Octopus (species)': 'Octopuses',
@@ -108,16 +109,16 @@ const Index = () => {
 
         // TESTS
             
-            console.table(primaryInfo.general)
-            console.log(personalityVillagers)
-            console.log(speciesVillagers)
+            // console.table(primaryInfo.general)
+            // console.log(personalityVillagers)
+            // console.log(speciesVillagers)
             console.log(primaryVillager, personality, species)
             console.log(primaryVillager, samePersonalityVillager, sameSpeciesVillager)
 
         // SET STATES
 
             // Trimming Villager Names
-            const trimName = name => name.split('(')[0]
+            const trimName = name => name.split('(')[0].trim()
             primaryInfo.general.name = trimName(primaryInfo.general.name)
             const chosenVillagers = [
                 primaryVillager, 
