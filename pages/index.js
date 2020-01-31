@@ -34,10 +34,12 @@ const speciesMap = {
     Wolf: 'Wolves',
 }
 const speciesPlural = species => species in speciesMap ? speciesMap[species] : `${species}s`
+
 const speciesBlacklist = new Set(
     [
         ...Object.keys(speciesMap),
-        'Octopus (fish)'
+        'Octopus (fish)',
+        'Frog (fish)',
     ]
 )
 
