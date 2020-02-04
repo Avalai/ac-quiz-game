@@ -54,6 +54,9 @@ const Index = () => {
 
     const [loading, setLoading] = useState(true)
     const [reload, setReload] = useState(0)
+
+    const [score, setScore] = useState(0)
+    const [count, setCount] = useState(0)
     useEffect(() => {
         const fetchVillagers = async () => {
         // GET THE MAIN VILLAGER
@@ -145,6 +148,20 @@ const Index = () => {
         setGuess('')
     }
 
+    const submitGuess = (villager) => {
+        setGuess(villager)
+        setCount(count + 1)
+        if ((villagerInfo.name).startsWith(villager)) {
+            setScore(score + 1)
+        }
+    }
+
+    const clearScore = () => {
+        setScore(0)
+        setCount(0)
+        setReload(0)
+    }
+
     return (
         <MuiThemeProvider theme={theme}>
             <style jsx>{`
@@ -171,6 +188,9 @@ const Index = () => {
                 >
                     Guess the Villager
                 </Typography>
+                <Typography variant='h4' component='p'>
+                    { score } / { count }
+                </Typography>
                 { loading && <Box m={3}>Loading...</Box> }
                 { !loading && <>
                 
@@ -191,7 +211,7 @@ const Index = () => {
                             >
                             <Button
                                 // key={ villager } 
-                                onClick={ () => {setGuess(villager)} }
+                                onClick={() => { submitGuess(villager) }}
                                 color={
                                     !guess ? "default" : 
                                     (villagerInfo.name).startsWith(villager) ? 
