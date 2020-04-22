@@ -113,6 +113,7 @@ const Index = () => {
                     </Box>
                 </>}
             </Box>
+            </Box>
             </Container>
         </MuiThemeProvider>
     )
