@@ -29,7 +29,8 @@ const theme = createMuiTheme({
         "@global": {
           body: {
             backgroundImage:
-              "url(/ac_seamless_pattern.png)"
+              // "url(/ac_seamless_pattern.png)"
+              "url(/nh-pattern-leaves-light.jpg)"
           }
         }
       }

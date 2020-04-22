@@ -44,11 +44,17 @@ const Index = () => {
             <CssBaseline />
 
             <Container maxWidth='sm' mx="auto">
+            <Box
+                bgcolor="rgba(0,129,96,0.3)"
+                borderRadius={24}
+                p={2}
+                my={2}
+            >
             <Box 
                 bgcolor="white" 
-                my={2} 
+                boxShadow="rgba(0, 0, 0, 0.2) 0px 10px 20px 0px;"
                 p={3} 
-                borderRadius={16} 
+                borderRadius={16}
                 textAlign="center"
             >
                 <Typography 
