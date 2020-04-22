@@ -10,8 +10,9 @@ function PageHead() {
 
       <meta property="og:url" content="https://ac-quiz-game.now.sh/" />
       <meta property="og:title" content="Guess the Villager" />
-      <meta property="og:description" content="A guessing game to test your knowledge of Animal Crossing villagers!" />
+      <meta property="og:description" content="Test your knowledge of Animal Crossing villagers!" />
       <meta property="og:image" content="guess-the-villager_banner.jpg" />
+      <meta name="twitter:image" content="guess-the-villager_banner.jpg" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content="@avalai" />
       <meta name="twitter:image:alt" content="Some lesser-known villagers from the Animal crossing series" />
