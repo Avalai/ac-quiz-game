@@ -1,5 +1,6 @@
 // FUNCTIONAL
 import useVillagers from '../hooks/useVillagers'
+import { TwitterShareButton } from 'react-twitter-embed'
 
 // DESIGN
 import { CssBaseline, Container, Box, Button, Typography } from '@material-ui/core'
@@ -106,6 +107,13 @@ const Index = () => {
                         ></NextVillagerButton>
                     </Box>
                 </>}
+            </Box>
+            <Box>
+                <TwitterShareButton
+                    key={`${ score }/${ count }`}
+                    url={'https://ac-quiz-game.now.sh'}
+                    options={{ text: `I guessed ${ score }/${ count } villagers! #GuessTheVillagerAC #AnimalCrossing #ACNH` }}
+                />
             </Box>
             </Container>
         </MuiThemeProvider>
