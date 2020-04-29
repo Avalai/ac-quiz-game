@@ -14,8 +14,11 @@ export default (props) => {
         <a
             href={props.url}
             style={{textDecoration: 'none'}}
+            target="_blank"
         >
-            <Button style={buttonStyle} startIcon={<GitHubIcon style={{fontSize: '12px'}} />}>
+            <Button 
+                style={buttonStyle} 
+                startIcon={<GitHubIcon style={{fontSize: '12px'}} />}>
                 GitHub
             </Button>
         </a>
