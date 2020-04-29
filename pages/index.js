@@ -12,6 +12,7 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 // COMPONENTS
 import ResultDetails from '../components/ResultDetails'
 import NextVillagerButton from '../components/NextVillagerButton'
+import GitHubButton from '../components/GitHubButton'
 import NoIcon from '../components/NoIcon'
 import theme from '../src/theme'
 import PageHead from '../components/Head'
@@ -108,12 +109,13 @@ const Index = () => {
                     </Box>
                 </>}
             </Box>
-            <Box>
-                <TwitterShareButton
-                    key={`${ score }/${ count }`}
-                    url={'https://ac-quiz-game.now.sh'}
-                    options={{ text: `I guessed ${ score }/${ count } villagers! #GuessTheVillagerAC #AnimalCrossing #ACNH` }}
-                />
+            <Box display="flex" justifyContent="space-between">
+                    <TwitterShareButton
+                        key={`${ score }/${ count }`}
+                        url={'https://ac-quiz-game.now.sh'}
+                        options={{ text: `I guessed ${ score }/${ count } villagers! #GuessTheVillagerAC #AnimalCrossing #ACNH` }}
+                    />
+                    <GitHubButton url="https://github.com/Avalai/ac-quiz-game" />
             </Box>
             </Container>
         </MuiThemeProvider>
