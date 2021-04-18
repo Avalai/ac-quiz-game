@@ -12,10 +12,10 @@ const speciesMap = {
     Bull: 'Bovine',
     Cow: 'Bovine', 
     Deer: 'Deer',
-    'Frog (species)': 'Frogs', 
     Mouse: 'Mice', 
-    'Octopus (species)': 'Octopuses',
+    Octopuses: 'Octopuses',
     Ostrich: 'Ostriches',
+    Rhinoceros: 'Rhinoceroses‎',
     Sheep: 'Sheep',
     Wolf: 'Wolves',
 }
