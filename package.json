@@ -4,18 +4,18 @@
   "description": "A flashcard quiz game to test your knowledge about the villagers featured in Animal Crossing games.",
   "main": "app.js",
   "dependencies": {
-    "@material-ui/core": "^4.9.0",
-    "@material-ui/icons": "^4.5.1",
-    "isomorphic-unfetch": "^3.0.0",
-    "next": "^9.3.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
+    "isomorphic-unfetch": "^3.1.0",
+    "next": "^10.1.3",
+    "react": "^17.0.2",
+    "react-dom": "^16.14.0",
     "react-twitter-embed": "^3.0.3",
     "typeface-roboto": "0.0.75"
   },
   "devDependencies": {
     "lodash": "^4.17.19",
-    "wikijs": "^6.0.1"
+    "wikijs": "^6.1.3"
   },
   "scripts": {
     "dev": "next",

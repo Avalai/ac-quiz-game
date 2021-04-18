@@ -9,7 +9,7 @@ const buttonStyle = {
     paddingBottom: '4px',
 }
 
-export default (props) => {
+const GitHubButton = (props) => {
     return (
         <a
             href={props.url}
@@ -23,5 +23,6 @@ export default (props) => {
             </Button>
         </a>
     )
-
 }
+
+export default GitHubButton

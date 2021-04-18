@@ -1,7 +1,7 @@
 import Button from '@material-ui/core/Button'
 import {ArrowForward} from '@material-ui/icons'
 
-export default (props) => {
+const NextVillagerButton = (props) => {
     return (
         <>
         { props.showResult &&
@@ -9,5 +9,6 @@ export default (props) => {
         }
         </>
     )
-
 }
+
+export default NextVillagerButton

@@ -1,4 +1,4 @@
-export default (props) => {
+const ResultDetails = (props) => {
 
     // const genderMap = { Male: 'He', Female: 'She' }
     // const villagerGender = genderMap[villagerInfo.gender]
@@ -14,3 +14,5 @@ export default (props) => {
         </>
     )
 }
+
+export default ResultDetails
