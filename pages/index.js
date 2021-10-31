@@ -1,4 +1,5 @@
 // FUNCTIONAL
+import { useState } from 'react'
 import useVillagers from '../hooks/useVillagers'
 import { TwitterShareButton } from 'react-twitter-embed'
 
@@ -31,6 +32,8 @@ const Index = () => {
         submitGuess,
         clearScore
     } = useVillagers()
+
+    const [buttonsDisabled, setButtonsDisabled] = useState(false)
     
     return (
         <MuiThemeProvider theme={theme}>
@@ -80,8 +83,10 @@ const Index = () => {
                                 my={2}
                             >
                             <Button
-                                // key={ villager } 
-                                onClick={() => { submitGuess(villager) }}
+                                onClick={() => { 
+                                    submitGuess(villager)
+                                    setButtonsDisabled(true)
+                                }}
                                 color={
                                     !guess ? "default" : 
                                     (villagerInfo.name).startsWith(villager) ? 
@@ -94,6 +99,7 @@ const Index = () => {
                                 }
                                 variant="outlined"
                                 fullWidth={true}
+                                disabled={ buttonsDisabled }
                             >
                                 { villager }
                             </Button>

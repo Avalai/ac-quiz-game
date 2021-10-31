@@ -24,17 +24,35 @@ const theme = createTheme({
       default: green[300]
     }
   },
-  overrides: {
-      MuiCssBaseline: {
-        "@global": {
-          body: {
-            backgroundImage:
-              "url(/ac_seamless_pattern.png)"
-          }
+})
+
+theme.overrides = {
+  MuiCssBaseline: {
+    "@global": {
+      body: {
+        backgroundImage:
+          "url(/ac_seamless_pattern.png)"
+      }
+    }
+  },
+}
+
+theme.components = {
+  MuiButton: {
+    styleOverrides: {
+      root: {
+        "&.MuiButton-outlinedPrimary.Mui-disabled": {
+          color: theme.palette.primary.main,
+          borderColor: theme.palette.primary.light
+        },
+        "&.MuiButton-outlinedPrimary.Mui-disabled": {
+          color: theme.palette.secondary.main,
+          borderColor: theme.palette.secondary.light
         }
       }
     }
-});
+  }
+};
 
 theme.typography.h1 = {
   fontSize: '2.4rem',
