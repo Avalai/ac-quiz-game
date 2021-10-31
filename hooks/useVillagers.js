@@ -1,33 +1,20 @@
 import { useState, useEffect } from 'react'
 import lodash from 'lodash'
-import wiki from 'wikijs'
 
-const nookipedia = wiki({
-    apiUrl: 'https://nookipedia.com/w/api.php',
-    origin: '*',
-})
-const pageFilter = ['Category:', 'User:']
+const nookipediaApi = async (params) => {
+    const nookipedia = new URL("https://api.nookipedia.com/villagers")
+    nookipedia.search = new URLSearchParams(params).toString()
 
-const speciesMap = {  
-    Bull: 'Bovine',
-    Cow: 'Bovine', 
-    Deer: 'Deer',
-    Mouse: 'Mice', 
-    Octopuses: 'Octopuses',
-    Ostrich: 'Ostriches',
-    Rhinoceros: 'Rhinoceroses‎',
-    Sheep: 'Sheep',
-    Wolf: 'Wolves',
+    const response = await fetch(nookipedia, {
+        "method": "GET",
+        "headers": {
+            "X-API-KEY": "process.env.NOOKIPEDIA_KEY",
+            "Accept-Version": "1.4.0"
+        }
+    })
+    
+    return response.json()
 }
-const speciesPlural = species => species in speciesMap ? speciesMap[species] : `${species}s`
-
-const speciesBlacklist = new Set(
-    [
-        ...Object.keys(speciesMap),
-        'Octopus (fish)',
-        'Frog (fish)',
-    ]
-)
 
 export default function useVillagers() {
 
@@ -49,80 +36,40 @@ export default function useVillagers() {
     useEffect(() => {
         const fetchVillagers = async () => {
         // GET THE MAIN VILLAGER
-            const allVillagers = (
-                await nookipedia.pagesInCategory('Category:Villagers')
-            ).filter(x => {
-                if (pageFilter.some(prefix => x.startsWith(prefix))) {
-                    return false
-                }
-                return true
-            })
-            // console.log(allVillagers.reverse())
+            const allVillagers = await nookipediaApi({excludedetails: true})
             const primaryVillager = _.sample(allVillagers) //'Groucho'
 
-            // Get the page data and parsed info about the main villager
-            const getPrimaryVillager = await nookipedia.page(primaryVillager)
-            const primaryInfo = await getPrimaryVillager.fullInfo()
+            // Get the full data about the main villager (by name)
+            const getPrimaryVillager = await nookipediaApi({name: primaryVillager})
+            // There are a few villagers with the same name, so pick one of them from the response (or the only one)
+            const primaryInfo = _.sample(getPrimaryVillager)
 
             // Set personality and species variables
-            const { personality, species } = primaryInfo.general
+            const villagerPersonality = primaryInfo.personality
+            const villagerSpecies = primaryInfo.species
 
         // GET SAME PERSONALITY VILLAGERS
-            const personalityVillagers = (
-                await nookipedia.pagesInCategory(`Category:${personality} villagers`)
-            ).filter( x => {
-                if ([personality, primaryVillager].some(item => item === x)) {
-                    return false
-                }
-                if (pageFilter.some(prefix => x.startsWith(prefix))) {
-                    return false
-                }
-                return true
-            })
+            const personalityVillagers = await nookipediaApi({personality: villagerPersonality, excludedetails: true})
             const samePersonalityVillager = _.sample(personalityVillagers) //'Peewee'
 
         // GET SAME SPECIES VILLAGERS
-
-            const speciesVillagers = (
-                await nookipedia.pagesInCategory(`Category:${speciesPlural(species)}`)
-            ).filter( x => {
-                if ([species, primaryVillager, samePersonalityVillager].some(item => item === x)) {
-                    return false
-                }
-                if (speciesBlacklist.has(x)) {
-                    return false
-                }
-                if (pageFilter.some(prefix => x.startsWith(prefix))) {
-                    return false
-                }
-                return true
-            })
+            const speciesVillagers = await nookipediaApi({species: villagerSpecies, excludedetails: true})
             const sameSpeciesVillager = _.sample(speciesVillagers) // 'Klaus'
 
         // TESTS
             
-            // console.table(primaryInfo.general)
+            // console.log(allVillagers)
             // console.log(personalityVillagers)
             // console.log(speciesVillagers)
-            console.log(primaryVillager, personality, species)
-            console.log(primaryVillager, samePersonalityVillager, sameSpeciesVillager)
+            // console.log(primaryVillager, villagerPersonality, villagerSpecies)
+            // console.log(primaryVillager, samePersonalityVillager, sameSpeciesVillager)
 
         // SET STATES
-
-            // Trimming Villager Names
-            const trimName = name => name.split('(')[0].trim()
-            primaryInfo.general.name = trimName(primaryInfo.general.name)
-            const chosenVillagers = [
-                primaryVillager, 
-                samePersonalityVillager, 
-                sameSpeciesVillager
-            ].map(trimName)
-            setVillagers(_.shuffle(chosenVillagers))
+            setVillagers(_.shuffle([primaryVillager, samePersonalityVillager, sameSpeciesVillager]))
 
             // Saving info on the main villager
-            setVillagerImage(await getPrimaryVillager.mainImage())
-            // setVillagerImage('https://nookipedia.com/w/images/8/83/Groucho_NLa.png')
-            setVillagerInfo(primaryInfo.general)
+            setVillagerImage(primaryInfo.image_url)
+            setVillagerInfo({name: primaryInfo.name, personality: villagerPersonality, species: villagerSpecies})
             // setVillagerInfo({name: 'Groucho', personality: 'Cranky', species: 'Bear'})
 
             // Turn off loading state
