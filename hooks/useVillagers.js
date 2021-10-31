@@ -8,7 +8,7 @@ const nookipediaApi = async (params) => {
     const response = await fetch(nookipedia, {
         "method": "GET",
         "headers": {
-            "X-API-KEY": "process.env.NOOKIPEDIA_KEY",
+            "X-API-KEY": process.env.NOOKIPEDIA_KEY,
             "Accept-Version": "1.4.0"
         }
     })
